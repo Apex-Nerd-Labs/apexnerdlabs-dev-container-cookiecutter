@@ -15,14 +15,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Bundle Zip
         run: |
-          zip -r dev-environment.zip . -x .gitignore .github/workflows/bundle-zip.yml
+          zip -r dev-environment-${{ github.ref_name }}.zip . -x .gitignore .github/workflows/bundle-zip.yml
       - name: Upload Bundle Zip
         uses: actions/upload-artifact@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: dev-environment.zip
-          path: dev-environment.zip
+          name: dev-environment-${{ github.ref_name }}.zip
+          path: dev-environment-${{ github.ref_name }}.zip
 
   add-to-release:
     needs: bundle-zip
@@ -36,14 +36,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/download-artifact@v4
         with:
-          name: dev-environment.zip
-          path: dev-environment.zip
+          name: dev-environment-${{ github.ref_name }}.zip
+          path: dev-environment-${{ github.ref_name }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Release Assets
         if: ${{ github.event_name != 'workflow_dispatch' }}
         uses: softprops/action-gh-release@v1
         with:
-          files: '*.zip'
-          body: |
-            This is the dev environment for the ${{ github.repository }} project. 
+          files: 'dev-environment-${{ github.ref_name }}.zip'
+          
