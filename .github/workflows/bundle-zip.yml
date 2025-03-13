@@ -46,4 +46,4 @@ jobs:
         with:
           files: '*.zip'
           body: |
-            This is the dev environment for the ${{ github.repository }} project.
+            This is the dev environment for the ${{ github.repository }} project. 
