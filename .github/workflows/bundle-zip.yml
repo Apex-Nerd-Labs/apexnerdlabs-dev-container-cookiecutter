@@ -17,7 +17,7 @@ jobs:
         run: |
           zip -r dev-environment.zip . -x .gitignore .github/workflows/bundle-zip.yml
       - name: Upload Bundle Zip
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
