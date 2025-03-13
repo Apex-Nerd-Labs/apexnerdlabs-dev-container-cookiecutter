@@ -48,6 +48,24 @@ def start_postgres():
     )
 
 
+def create_venv_for_uv():
+    subprocess.run(["uv", "venv", "--directory", "{{ cookiecutter.backend_slug }}"])
+
+
+def install_dependencies_for_uv():
+    subprocess.run(["uv", "sync", "--directory", "{{ cookiecutter.backend_slug }}"])
+
+
+def install_pnpm_dependencies():
+    subprocess.run(["pnpm", "install", "--dir", "{{ cookiecutter.frontend_slug }}"])
+
+
+def install_pnpm_dev_dependencies():
+    subprocess.run(
+        ["pnpm", "install", "--dir", "{{ cookiecutter.frontend_slug }}", "--dev"]
+    )
+
+
 if __name__ == "__main__":
     remove_paths()
     if user_wants_postgres():
@@ -55,3 +73,7 @@ if __name__ == "__main__":
             create_postgres_volume()
         if not is_postgres_running():
             start_postgres()
+    create_venv_for_uv()
+    install_dependencies_for_uv()
+    install_pnpm_dependencies()
+    install_pnpm_dev_dependencies()
