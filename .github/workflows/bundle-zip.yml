@@ -15,7 +15,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Bundle Zip
         run: |
-          zip -r dev-environment-${{ github.ref_name }}.zip . -x .gitignore .github/workflows/bundle-zip.yml
+          zip -r dev-environment-${{ github.ref_name }}.zip ./templates/development-environment -x .gitignore .github/workflows/bundle-zip.yml
       - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
