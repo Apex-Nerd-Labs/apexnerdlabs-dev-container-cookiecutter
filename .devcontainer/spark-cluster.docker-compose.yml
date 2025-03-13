@@ -1,0 +1,31 @@
+services:
+  spark-master:
+    image: bitnami/spark:3.5
+    container_name: spark-master
+    networks:
+      - dev-env
+    ports:
+      - "8080:8080"
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+    volumes:
+      - spark_data:/data
+    command: >
+      bash -c "
+      /opt/bitnami/spark/bin/spark-class org.apache.spark.deploy.master.Master
+      --ip spark-master
+      --port 7077 --webui-port 8080"
+  
+  spark-worker:
+    image: bitnami/spark:3.5
+    container_name: spark-worker
+    networks:
+      - dev-env
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+    volumes:
+      - spark_data:/data

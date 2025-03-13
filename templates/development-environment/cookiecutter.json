@@ -1,0 +1,9 @@
+{
+	"project_name": "ApexNerdLabs",
+	"project_slug": "{{ cookiecutter.project_name|lower|replace(' ', '-') }}",
+	"project_port": "8001",
+	"postgres_password": "postgres",
+	"postgres_user": "postgres",
+	"volume_name": "external_data",
+	"install_postgres": "true"
+}

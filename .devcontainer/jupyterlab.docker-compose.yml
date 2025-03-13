@@ -1,0 +1,19 @@
+name: jupyterlab
+
+services:
+  jupyterlab:
+    image: jupyter/datascience-notebook:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/lab/work
+      - jupyterlab-data:/home/lab/.local/share/jupyter
+    labels:
+      - dev.orbstack.domains=labs.bitonic.ai.local
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_USER=lab
+      - JUPYTER_UID=1000
+
+volumes:
+  jupyterlab-data:

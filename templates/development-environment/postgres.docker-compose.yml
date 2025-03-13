@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    networks:
+      - dev-env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD={{cookiecutter.postgres_password}}
+      - POSTGRES_USER={{cookiecutter.postgres_user}}
+    labels:
+      - dev.orbstack.domains=postgres.{{cookiecutter.project_slug}}.local
+
+networks:
+  dev-env:
+    driver: bridge
+
+volumes:
+  {{cookiecutter.volume_name}}:
+    external: true
