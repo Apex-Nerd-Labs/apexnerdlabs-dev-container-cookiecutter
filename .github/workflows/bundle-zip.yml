@@ -16,9 +16,12 @@ jobs:
       - name: Bundle Zip
         run: |
           zip -r dev-environment-${{ github.ref_name }}.zip . -x .gitignore .github/workflows/bundle-zip.yml
-      - name: Upload Release Assets
-        if: ${{ github.event_name != 'workflow_dispatch' }}
+      - name: Upload Release
         uses: softprops/action-gh-release@v1
         with:
           files: 'dev-environment-${{ github.ref_name }}.zip'
+          body: |
+            This is the dev environment for the ${{ github.repository }} project. 
+            The zip file is named dev-environment-${{ github.ref_name }}.zip.
+
           
