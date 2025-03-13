@@ -60,12 +60,6 @@ def install_pnpm_dependencies():
     subprocess.run(["pnpm", "install", "--dir", "{{ cookiecutter.frontend_slug }}"])
 
 
-def install_pnpm_dev_dependencies():
-    subprocess.run(
-        ["pnpm", "install", "--dir", "{{ cookiecutter.frontend_slug }}", "--dev"]
-    )
-
-
 if __name__ == "__main__":
     remove_paths()
     if user_wants_postgres():
@@ -76,4 +70,3 @@ if __name__ == "__main__":
     create_venv_for_uv()
     install_dependencies_for_uv()
     install_pnpm_dependencies()
-    install_pnpm_dev_dependencies()
