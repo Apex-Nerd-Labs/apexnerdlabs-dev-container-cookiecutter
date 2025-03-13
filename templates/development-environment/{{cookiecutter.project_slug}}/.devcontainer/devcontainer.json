@@ -19,10 +19,14 @@
 	],
 	"workspaceFolder": "/workspaces",
 	"userEnvProbe": "loginInteractiveShell",
-	"forwardPorts": [{{cookiecutter.project_port}}],
+	"forwardPorts": [{{cookiecutter.frontend_port}}, {{cookiecutter.backend_port}}],
 	"portsAttributes": {
-	  "{{cookiecutter.project_port}}": {
-		"label": "{{cookiecutter.project_name}}",
+	  "{{cookiecutter.frontend_port}}": {
+		"label": "{{cookiecutter.frontend_slug}}",
+		"onAutoForward": "openBrowser"
+	  },
+	  "{{cookiecutter.backend_port}}": {
+		"label": "{{cookiecutter.backend_slug}}",
 		"onAutoForward": "openBrowser"
 	  }
 	},
