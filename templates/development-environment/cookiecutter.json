@@ -10,6 +10,6 @@
 	"backend_port": "8001",
 	"postgres_password": "postgres",
 	"postgres_user": "postgres",
-	"volume_name": "external_data",
-	"install_postgres": "true"
+	"volume_name": "postgres_data",
+	"install_postgres": true
 }

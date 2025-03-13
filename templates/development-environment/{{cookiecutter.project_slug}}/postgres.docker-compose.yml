@@ -5,7 +5,7 @@ services:
     networks:
       - dev-env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - {{cookiecutter.volume_name}}:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD={{cookiecutter.postgres_password}}
       - POSTGRES_USER={{cookiecutter.postgres_user}}
